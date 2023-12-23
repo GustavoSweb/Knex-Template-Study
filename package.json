@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "knex": "^3.1.0",
+    "mysql2": "^3.6.5"
+  },
+  "name": "knex-template-study",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gustavo",
+  "license": "ISC",
+  "description": ""
+}
