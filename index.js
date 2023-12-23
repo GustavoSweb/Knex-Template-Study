@@ -42,4 +42,22 @@ async function Delete(){
       console.error(err)
   }
 }
-()
+async function Update(){
+  try{
+      const data = await database.where({name:"Jose"}).update({email:'joselinho@gmail.com'}).table('user')
+      console.log(data)
+  
+  }catch(err){
+      console.error(err)
+  }
+}
+async function SelectOrder(){
+  try{
+      const data = await database.select(['id', 'name']).orderBy('name', 'asc').table('user') // DESC do maior ao meno 5 4 3 2 1 ASC do menor ao maior 1 2 3 4 5
+      console.log(data)
+  
+  }catch(err){
+      console.error(err)
+  }
+}
+SelectOrder()
