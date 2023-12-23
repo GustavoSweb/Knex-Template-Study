@@ -1,11 +1,15 @@
 const database = require("./database/database");
 
-var data = {
-  name: "Jose",
-  email: "jose@gmail.com",
-  password: "jose",
-};
+var dataAssociated = {
+name:'Gustavo',
+email:'gustavo@gmail.com',
+password:'gustavo',
+classroom_id:1
 
+};
+var data = {
+
+}
 async function Create() {
   try {
     const query = await database.insert(data).into("user");
@@ -35,7 +39,7 @@ async function SelectWhere(){
 }
 async function Delete(){
   try{
-      const data = await database.where({name:"Vitor"}).delete().table('user')
+      const data = await database.where({name:"Gustavo"}).delete().table('user')
       console.log(data)
   
   }catch(err){
@@ -60,4 +64,31 @@ async function SelectOrder(){
       console.error(err)
   }
 }
-SelectOrder()
+async function SelectOrder(){
+  try{
+      const data = await database.select(['id', 'name']).orderBy('name', 'asc').table('user') // DESC do maior ao meno 5 4 3 2 1 ASC do menor ao maior 1 2 3 4 5
+      console.log(data)
+  
+  }catch(err){
+      console.error(err)
+  }
+}
+async function SelectJoin(){
+  try{
+      const data = await database.select(['user.*', 'classroom.name as class_name']).table('classroom').innerJoin('user', 'user.classroom_id', 'classroom.id') // DESC do maior ao meno 5 4 3 2 1 ASC do menor ao maior 1 2 3 4 5
+      console.log(data)
+  
+  }catch(err){
+      console.error(err)
+  }
+}
+async function SelectJoinWhere(){
+  try{
+      const data = await database.select(['user.*', 'classroom.name as class_name']).table('classroom').innerJoin('user', 'user.classroom_id', 'classroom.id').where('user.id', 3)
+      console.log(data)
+  
+  }catch(err){
+      console.error(err)
+  }
+}
+SelectJoinWhere()
