@@ -1,9 +1,9 @@
 const database = require("./database/database");
 
 var data = {
-  name: "Gustavo",
-  email: "gustavo@gmail.com",
-  password: "gustavo",
+  name: "Jose",
+  email: "jose@gmail.com",
+  password: "jose",
 };
 
 async function Create() {
@@ -24,5 +24,22 @@ async function Select(){
         console.error(err)
     }
 }
-
-Select()
+async function SelectWhere(){
+  try{
+      const data = await database.select(['id', 'name']).whereRaw('name = "Gustavo"').table('user')
+      console.log(data)
+  
+  }catch(err){
+      console.error(err)
+  }
+}
+async function Delete(){
+  try{
+      const data = await database.where({name:"Vitor"}).delete().table('user')
+      console.log(data)
+  
+  }catch(err){
+      console.error(err)
+  }
+}
+()
